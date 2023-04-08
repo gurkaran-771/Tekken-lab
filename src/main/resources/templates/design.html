@@ -12,22 +12,14 @@
     />
     <title>Design form</title>
   </head>
-  <body style="background: linear-gradient(to right, #c9ffbf, #ffafbd);
-      ">
-  
+  <body>
     <div
       class="d-flex flex-column bd-highlight justify-content-center align-items-center w-75 ms-5"
     >
       <h1 class="mb-3">Design Tekken Reborn Fighter</h1>
       <!-- We bind @ModelAttribute called fighter to this HTML form-->
       <form method="post" th:object="${fighter}">
-        <div style="background: beige;
-        width: 700px;
-        text-align: center;
-        margin: 0 auto;
-        padding: 25px;
-        border-radius: 25px;">
-
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         <div th:if="${#fields.hasErrors()}">
           <span> Please correct the problems below and resubmit. </span>
         </div>
@@ -110,10 +102,14 @@
             th:text="${anime.title}"
           />
         </select>
-        <button type="submit" class="btn btn-primary mt-5">
-          Create Fighter
+        <button class="btn btn-primary mt-5">Create Fighter</button>
+      </form>
+      <form method="post" th:action="@{/design/deleteAllFighters}">
+        <button
+          class="btn btn-danger mt-5"
+        >
+          Delete All Fighters
         </button>
-      </div>
       </form>
     </div>
   </body>
